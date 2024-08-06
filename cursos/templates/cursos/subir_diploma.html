@@ -1,0 +1,23 @@
+<!-- subir_diploma.html -->
+{% extends 'base.html' %}
+{% block title %}Subir Diploma{% endblock %}
+{% block content %}
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow-lg border-0">
+                <div class="card-header text-center">
+                    <h2 class="card-title mb-0">Subir Diploma para {{ matricula.usuario.get_full_name }}</h2>
+                </div>
+                <div class="card-body">
+                    <form method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <button type="submit" class="btn btn-primary">Subir Diploma</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

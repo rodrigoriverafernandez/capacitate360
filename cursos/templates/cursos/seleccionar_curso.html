@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %}Seleccionar Curso{% endblock %}
+
+{% block content %}
+    <h2 class="my-4">Seleccionar Curso</h2>
+    <form method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            {{ form.curso.label_tag }}
+            {{ form.curso }}
+        </div>
+        <button type="submit" class="btn btn-primary">Ver Estudiantes</button>
+    </form>
+{% endblock %}

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Capacitate 360{% endblock %}</title>
+    {% load static %}
+    
+    <!-- jQuery UI (CSS y JS) -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand d-flex align-items-center" href="/">
+                <img src="{% static 'img/logo.png' %}" alt="Logo" width="70" height="80" class="d-inline-block align-top">
+                <span class="ml-2">Gerencia.Abastecimientos</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto move-right">
+                    <li class="nav-item"><a class="nav-link" href="/cursos/">Cursos</a></li>
+                    {% if user.is_authenticated %}
+                        <li class="nav-item"><a class="nav-link" href="/mis-cursos/">MisCursos</a></li>
+                      
+                        <li class="nav-item"><a class="nav-link" href="{% url 'logout' %}">Logout</a></li>
+                        <li class="nav-item nav-link text-white"> {{ user.rpe }} - {{ user.last_name }} </li>
+                        {% if user.is_staff %}
+                            <li class="nav-item"><a class="nav-link" href="/listar-estudiantes/">L.Estudiantes</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/seleccionar-curso/">Ver.Curso</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/admin/">Admin.</a></li>
+                        {% endif %}
+                    {% else %}
+                        <li class="nav-item"><a class="nav-link" href="/registro/">Registro</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/contact/">Contacto</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'login' %}">Login</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <header class="bg-green text-white text-center py-3">
+        <div class="container">
+            <h2>Subgerencia de Regulacion de Contrataciones</h2>
+            <p class="lead" style="font-size: 24px;">Auxiliaria General.</p>
+        </div>
+    </header>
+
+    <main class="container mt-4">
+        {% if messages %}
+            <div class="mt-4">
+                {% for message in messages %}
+                    <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                        {{ message }}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+        {% block content %}
+        {% endblock %}
+    </main>
+    <footer class="py-5 bg-dark">
+        <div class="footer-container text-center text-white">
+            <p class="m-0">&copy; 2024 Capacitate 360. Todos los derechos reservados. Soporte Técnico Cuauhtémoc</p>
+            <div class="social-icons mt-3">
+                <a href="https://www.facebook.com" class="text-white mx-2" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://www.twitter.com" class="text-white mx-2" target="_blank"><i class="fab fa-twitter"></i></a>
+                <a href="https://www.linkedin.com" class="text-white mx-2" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                <a href="https://www.instagram.com" class="text-white mx-2" target="_blank"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

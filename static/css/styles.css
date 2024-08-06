@@ -1,0 +1,253 @@
+body {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    background-color: #f8f9fa;
+}
+
+html, body {
+    max-width: 100%;
+    overflow-x: hidden; /* Previene el desbordamiento horizontal */
+}
+
+
+.curso-img {
+    width: 100%; /* Ajusta la imagen al ancho completo del contenedor */
+    height: auto; /* Mantén la proporción de la imagen */
+    max-height: 400px; /* Ajusta la altura máxima según sea necesario */
+    object-fit: cover; /* Recorta la imagen si es necesario para llenar el contenedor */
+}
+
+
+.bg-green {
+    background-color: #090907; /* Verde oscuro (green flag color) */
+}
+.navbar-brand {
+    font-weight: bold;
+    font-size: 2.5em;
+    display: flex;
+    align-items: center;
+}
+
+.navbar-brand img {
+    margin-right: 10px;
+}
+
+.navbar-nav .nav-link {
+    font-size: 1.1em;
+    color: white !important;
+}
+
+header {
+    margin-top: 60px; /* Ajusta el margen superior para separar del navbar */
+}
+
+header h1 {
+    font-size: 2.0rem; /* Ajusta el tamaño del texto del título */
+}
+
+header .lead {
+    font-size: 1.25rem; /* Ajusta el tamaño del texto del subtítulo */
+}
+
+h2 {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.container {
+    margin-top: 10px;
+}
+
+.form-group label {
+    font-weight: bold;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+    border-color: #004085;
+}
+
+/* Ajustes generales */
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+/* Ajustes del footer */
+footer {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+.footer-container {
+    max-width: 600px; /* Ajusta este valor según lo que necesites */
+    margin: 0 auto;
+    padding: 0 25px; /* Opcional: añadir padding para evitar que el contenido toque los bordes */
+}
+
+.social-icons {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.social-icons a {
+    display: inline-block;
+    margin: 0 10px;
+}
+
+/* Estilo personalizado para el nombre del usuario */
+.navbar-nav .nav-link.text-white {
+    margin-left: 10px;
+    margin-right: 10px;
+    background-color: #28a745;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+.navbar-nav .nav-link.text-white:hover {
+    background-color: #218838;
+}
+
+/* Aumentar el espacio entre los elementos del menú */
+.navbar-nav .nav-item {
+    margin-left: 15px;
+    margin-right: 15px;
+}
+
+/* Mover el menú a la derecha */
+.navbar-nav.move-right {
+    margin-right: 50px; /* Ajusta este valor según sea necesario */
+}
+
+
+
+/* Agregar esta clase para limitar la descripción a 4 renglones */
+.course-description {
+    display: -webkit-box;
+    -webkit-line-clamp: 4; /* Número de líneas a mostrar */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+
+
+/* Nuevas reglas CSS para la imagen de fondo */
+body {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    background-color: #f8f9fa;
+}
+
+.main-header {
+    background: url("/static/img/capacitacion.jpg") no-repeat center center;
+    background-size: cover;
+    height: 70vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+}
+
+.main-header h1 {
+    font-size: 3rem;
+    font-weight: bold;
+}
+
+.intro {
+    padding: 2rem 0;
+}
+
+
+.card-header-black {
+    background-color: #000; /* Color negro */
+    color: #fff; /* Color de texto blanco para contraste */
+}
+
+.card {
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.card-header {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.card-title {
+    margin-bottom: 0; /* Elimina el margen inferior */
+}
+
+.intro {
+    background-color: #f8f9fa; /* Color de fondo para la sección */
+    padding: 50px 0; /* Espaciado arriba y abajo */
+    text-align: center; /* Centrar el texto */
+}
+
+.intro p {
+    font-size: 1.25rem; /* Aumentar el tamaño de la letra */
+    color: #333; /* Color del texto */
+    margin-bottom: 0; /* Eliminar el margen inferior */
+}
+
+.card {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.card-img-top {
+    width: 100%;
+    height: 200px; /* Ajusta esta altura según tus necesidades */
+    object-fit: cover; /* Esta propiedad recorta la imagen para que se ajuste a las dimensiones sin distorsionarse */
+}
+
+.card-body {
+    flex: 1 1 auto; /* Permite que el cuerpo de la tarjeta se expanda */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Distribuye el espacio entre el contenido */
+}
+
+.card-title {
+    margin-bottom: 1rem; /* Espacio debajo del título */
+}
+
+.card-text {
+    flex-grow: 1; /* Permite que la descripción crezca para llenar el espacio */
+}
+
+.btn {
+    align-self: flex-end; /* Alinea los botones al final */
+}
+
+
+.d-flex {
+    display: flex;
+    justify-content: space-between;
+}
+
+.btn {
+    flex: 1; /* Para que ambos botones tengan el mismo tamaño */
+    margin: 5px; /* Espacio entre los botones */
+}
+
+.btn-primary i.fas.fa-download {
+    margin-right: 5px; /* Espacio entre el icono y el texto */
+}
+
+
+
+
+.social-icons a:hover {
+    color: #007bff; /* Cambia el color al pasar el cursor por encima */
+}
+
+
+
+

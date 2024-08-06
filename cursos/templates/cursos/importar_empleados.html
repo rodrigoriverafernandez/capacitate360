@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %}Importar Empleados{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow-lg border-0">
+                <div class="card-header card-header-black text-center">
+                    <h2 class="card-title mb-0">Importar Empleados</h2>
+                </div>
+                <div class="card-body">
+                    <form method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            {{ form.file.label_tag }}
+                            {{ form.file }}
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block mt-3">Importar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

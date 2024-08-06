@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% block title %}Detalle del Curso{% endblock %}
+{% load static %}
+{% block content %}
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">
+                    <h2>{{ curso.nombre }}</h2>
+                </div>
+                <div class="card-body">
+                    {% if curso.imagen %}
+                        <img src="{{ curso.imagen.url }}" class="card-img-top curso-img" alt="Imagen de {{ curso.nombre }}">
+                    {% else %}
+                        <img src="{% static 'img/default_course.jpg' %}" class="card-img-top curso-img" alt="Imagen por defecto">
+                    {% endif %}
+                    <p><strong>Profesor:</strong> {{ curso.profesor.get_full_name }}</p>
+                    <p><strong>Fecha de inicio:</strong> {{ curso.fecha_inicio|date:"d M Y" }}</p>
+                    <p><strong>Fecha de fin:</strong> {{ curso.fecha_fin|date:"d M Y" }}</p>
+                    <p><strong>Descripción:</strong> {{ curso.descripcion }}</p>
+                    <p><strong>Contenido:</strong> {{ curso.contenido }}</p>
+                    <p><strong>Valor en puntos:</strong> {{ curso.valor_en_puntos }}</p>
+                    <p><strong>Cupo:</strong> {{ curso.cupo }}</p>
+                    {% if curso.documento_pdf %}
+                        <p>
+                            <a href="{{ curso.documento_pdf.url }}" class="btn btn-primary" download>
+                                <i class="fas fa-download"></i> Descargar Documento PDF
+                            </a>
+                        </p>
+                    {% endif %}
+                    
+                    <!-- Muestra del estado del diploma -->
+                    {% if matricula %}
+                        {% if diploma_aprobado %}
+                            <p>
+                                <a href="{% url 'generar_diploma' matricula.id %}" class="btn btn-primary">
+                                    <i class="fas fa-download"></i> Descargar Diploma
+                                </a>
+                            </p>
+                        {% else %}
+                            <p>El diploma está pendiente de aprobación.</p>
+                        {% endif %}
+                    {% else %}
+                        <p><a href="{% url 'matricularse' curso.id %}" class="btn btn-success">Matricularse</a></p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

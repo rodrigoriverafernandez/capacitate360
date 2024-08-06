@@ -1,0 +1,162 @@
+{% extends 'base.html' %}
+{% load form_tags %}
+
+{% block title %}Registro - Capacitación 360{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow-lg border-0">
+                <div class="card-header card-header-black text-center">
+                    <h2 class="card-title mb-0">Registro</h2>
+                </div>
+                <div class="card-body">
+                    <form method="post" enctype="multipart/form-data">
+                    <!--<form method="post" id="registro-form">-->
+                    
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="id_rpe">RPE</label>
+                            {{ form.rpe }}
+                            {% if form.rpe.errors %}
+                                <div class="text-danger">{{ form.rpe.errors }}</div>
+                            {% endif %}
+                        </div>
+                        <div class="form-group">
+                            <label for="id_nombre">Nombre</label>
+                            {{ form.nombre }}
+                        </div>
+                        <div class="form-group">
+                            <label for="id_apellido_paterno">Apellido Paterno</label>
+                            {{ form.apellido_paterno }}
+                        </div>
+                        <div class="form-group">
+                            <label for="id_apellido_materno">Apellido Materno</label>
+                            {{ form.apellido_materno }}
+                        </div>
+                        <div class="form-group">
+                            <label for="id_correo">Correo Electrónico</label>
+                            {{ form.correo }}
+                        </div>
+                        <div class="form-group">
+                            <label for="id_telefono">Teléfono</label>
+                            {{ form.telefono }}
+                        </div>
+                        <div class="form-group">
+                            <label for="id_area_trabajo">Área de Trabajo</label>
+                            {{ form.area_trabajo }}
+                        </div>
+                        <div class="form-group">
+                            <label for="id_tc">Tipo de Empleado</label>
+                            {{ form.tc }}
+                        </div>
+                        <div class="form-group">
+                            <label for="id_fecha_antiguedad">Fecha de Antigüedad</label>
+                            {{ form.fecha_antiguedad }}
+                        </div>
+                        <div class="form-group">
+                            <label for="id_categoria_descripcion">Descripción de Categoría</label>
+                            {{ form.categoria_descripcion }}
+                        </div>
+                        <div class="form-group">
+                            <label for="id_area_adscripcion">Área de Adscripción</label>
+                            {{ form.area_adscripcion }}
+                        </div>
+
+                        <div class="form-group">
+                            <label for="id_descripcion_categoria">Descripción de Categoría</label>
+                            {{ form.descripcion_categoria }}
+                        </div>
+                        <div class="form-group">
+                            <label for="id_foto">Foto</label>
+                            {{ form.foto }}
+                        </div>
+                        <div class="form-group">
+                            <label for="id_password1">Contraseña</label>
+                            {{ form.password1 }}
+                        </div>
+                        <div class="form-group">
+                            <label for="id_password2">Confirmar Contraseña</label>
+                            {{ form.password2 }}
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block mt-3">Registrarse</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+  
+        $(document).ready(function() {
+            $("#id_fecha_antiguedad").datepicker({
+                dateFormat: "yy-mm-dd", // Formato de la fecha para coincidir con el formato de Django
+                changeMonth: true,
+                changeYear: true,
+                yearRange: "1900:2100" // Ajusta este rango de años según sea necesario
+            });
+    
+            document.getElementById('id_rpe').addEventListener('blur', function() {
+                var rpe = this.value.trim();
+                console.log("RPE input field value: ", rpe);
+    
+                if (rpe) {
+                    fetch(`/obtener-datos-empleado/?rpe=${rpe}`)
+                        .then(response => {
+                            console.log("Fetch response status: ", response.status);
+                            if (response.status === 200) {
+                                return response.json();
+                            } else if (response.status === 404) {
+                                console.log("Fetch response status: 404 - RPE no encontrado");
+                                alert('RPE no encontrado. Por favor, complete el formulario manualmente.');
+                                limpiarCampos();
+                                return null;
+                            } else {
+                                console.log("Fetch response status: unknown error");
+                                throw new Error('Error desconocido.');
+                            }
+                        })
+                        .then(data => {
+                            if (data && !data.error) {
+                                console.log("Data received from fetch: ", data);
+                                document.getElementById('id_nombre').value = data.nombre || '';
+                                document.getElementById('id_apellido_paterno').value = data.apellido_paterno || '';
+                                document.getElementById('id_apellido_materno').value = data.apellido_materno || '';
+                                document.getElementById('id_correo').value = data.correo || '';
+                                document.getElementById('id_telefono').value = data.telefono || '';
+                                document.getElementById('id_area_trabajo').value = data.area_trabajo || '';
+                                document.getElementById('id_tc').value = data.tc || '';
+                                document.getElementById('id_fecha_antiguedad').value = data.fecha_antiguedad || '';
+                                document.getElementById('id_categoria_descripcion').value = data.categoria_descripcion || '';
+                                document.getElementById('id_area_adscripcion').value = data.area_adscripcion || '';
+                                document.getElementById('id_descripcion_categoria').value = data.descripcion_categoria || '';
+                                document.getElementById('id_foto').value = data.foto || '';
+                            }
+                        })
+                        .catch(error => {
+                            console.log("Error al obtener datos del empleado:", error);
+                        });
+                }
+            });
+    
+            function limpiarCampos() {
+                console.log("Limpieza de campos iniciada");
+                document.getElementById('id_nombre').value = '';
+                document.getElementById('id_apellido_paterno').value = '';
+                document.getElementById('id_apellido_materno').value = '';
+                document.getElementById('id_correo').value = '';
+                document.getElementById('id_telefono').value = '';
+                document.getElementById('id_area_trabajo').value = '';
+                document.getElementById('id_tc').value = '';
+                document.getElementById('id_fecha_antiguedad').value = '';
+                document.getElementById('id_categoria_descripcion').value = '';
+                document.getElementById('id_area_adscripcion').value = '';
+                document.getElementById('id_descripcion_categoria').value = '';
+                console.log("Limpieza de campos completada");
+            }
+        });
+    </script>
+
+{% endblock %}

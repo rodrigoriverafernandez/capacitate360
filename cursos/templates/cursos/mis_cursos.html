@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Mis Cursos{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Mis Cursos</h2>
+    <div class="row">
+        {% for curso in cursos %}
+            <div class="col-md-4">
+                <div class="card mb-4">
+                    {% if curso.imagen %}
+                        <img src="{{ curso.imagen.url }}" class="card-img-top" alt="Imagen de {{ curso.nombre }}">
+                    {% else %}
+                        <img src="{% static 'img/default_course.jpg' %}" class="card-img-top" alt="Imagen por defecto">
+                    {% endif %}
+                    <div class="card-body">
+                        <h5 class="card-title">{{ curso.nombre }}</h5>
+                        <p class="card-text">
+                            <strong>Profesor:</strong> {{ curso.profesor.get_full_name }}<br>
+                            <strong>Fecha de inicio:</strong> {{ curso.fecha_inicio|date:"d M Y" }}<br>
+                            <strong>Fecha de fin:</strong> {{ curso.fecha_fin|date:"d M Y" }}<br>
+                            <strong>Valor en puntos:</strong> {{ curso.valor_en_puntos }}<br>
+                            <strong>Cupo:</strong> {{ curso.cupo }}<br>
+                            <strong>Descripción:</strong> {{ curso.descripcion|truncatechars:170 }}
+                        </p>
+                        <a href="{% url 'curso_detalle' curso.id %}" class="btn btn-primary">Ver Detalles</a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

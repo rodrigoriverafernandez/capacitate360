@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block title %}Estudiantes por Curso{% endblock %}
+
+{% block content %}
+    <h2 class="my-4">Estudiantes inscritos en {{ curso.nombre }}</h2>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>RPE</th>
+                <th>Nombre</th>
+                <th>Apellido Paterno</th>
+                <th>Apellido Materno</th>
+                <th>Correo</th>
+                <th>Teléfono</th>
+                <th>Área</th>
+                <th>Tipo de Empleado</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for estudiante in estudiantes %}
+                <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td>{{ estudiante.rpe }}</td>
+                    <td>{{ estudiante.nombre }}</td>
+                    <td>{{ estudiante.apellido_paterno }}</td>
+                    <td>{{ estudiante.apellido_materno }}</td>
+                    <td>{{ estudiante.correo }}</td>
+                    <td>{{ estudiante.telefono }}</td>
+                    <td>{{ estudiante.area }}</td>
+                    <td>{{ estudiante.tipo_empleado }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
